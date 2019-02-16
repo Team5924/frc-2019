@@ -1,0 +1,90 @@
+package frc.robot.subsystems;
+
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+
+import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.Constants;
+import frc.robot.commands.DriveCommand;
+import frc.robot.subsystems.MotorControl;
+
+/**
+ * Add your docs here.
+ */
+public class DriveTrain extends Subsystem {
+  // Put methods for controlling this subsystem
+  // here. Call these from Commands.
+
+  TalonSRX rrt,rrbr,rrbl,rlt,rlbr,rlbl;
+  MotorControl motorControl;
+
+
+  public DriveTrain()
+  {
+    rrt = new TalonSRX(Constants.d_rearRightTop);
+    rrbr = new TalonSRX(Constants.d_rearRightBottomRight);
+    rrbl = new TalonSRX(Constants.d_rearRightBottomLeft);
+    rlt = new TalonSRX(Constants.d_rearLeftTop);
+    rlbr = new TalonSRX(Constants.d_rearLeftBottomRight);
+    rlbl = new TalonSRX(Constants.d_rearLeftBottomLeft);
+
+
+    //Tells the left side that it should be inverted so that we drive stight with each side having positive motor values.
+    rlt.setInverted(true);
+    rlbr.setInverted(true);
+    rlbl.setInverted(true);
+
+
+    rlbr.set(ControlMode.Follower, rlt.getDeviceID());
+    rlbr.set(ControlMode.Follower, rlt.getDeviceID());
+    rrbr.set(ControlMode.Follower, rrt.getDeviceID());
+    rrbl.set(ControlMode.Follower, rrt.getDeviceID());
+
+    //Config all talons.
+    configTalons(rrt);
+    configTalons(rrbr);
+    configTalons(rrbl);
+    configTalons(rlt);
+    configTalons(rlbr);
+    configTalons(rlbl);
+
+    motorControl = new MotorControl(rlt,rrt);
+  }
+
+
+  public void configTalons(TalonSRX tSrx)
+  {
+    //Tells the talon that the max output that it can give is between 1 and -1 which would mean full forward and full backward.
+    tSrx.configPeakOutputForward(1,0);
+    tSrx.configPeakOutputReverse(-1,0);
+
+    //Tells the talon that it should current limit its self so that we dont blow a 40Amp breaker.
+    tSrx.configPeakCurrentLimit(40, 0);
+    tSrx.enableCurrentLimit(true);
+    tSrx.configContinuousCurrentLimit(40, 0);
+    //The max output current is 40Amps for .25 of a second.
+    tSrx.configPeakCurrentDuration(250, 0);
+
+    //Tells the talon that it should only apply 12 volts (or less) to the motor.
+    tSrx.configVoltageCompSaturation(12, 0);
+  }
+
+
+  public void driveArcade(double moveValue, double rotateValue)
+  {
+    motorControl.driveArcade(moveValue, rotateValue);
+  }
+
+
+  public void driveTank(double moveValue, double rotateValue)
+  {
+    motorControl.driveTank(moveValue, rotateValue);
+  }
+
+
+  @Override
+  public void initDefaultCommand() {
+    // Set the default command for a subsystem here.
+    setDefaultCommand(new DriveCommand());
+  }
+}
