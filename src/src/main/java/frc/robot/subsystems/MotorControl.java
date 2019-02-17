@@ -31,7 +31,7 @@ public final class MotorControl
 
 		talon1 = right;
 		talon2 = left;
-  }
+ 	}
   
   //This constructor is for 4 motors without follower
 
@@ -57,22 +57,6 @@ public final class MotorControl
 		talon6 = leftBack;
   	}
 
-  public void configTalons(TalonSRX tSrx)
-  {
-    //Tells the talon that the max output that it can give is between 1 and -1 which would mean full forward and full backward.
-    tSrx.configPeakOutputForward(1,0);
-    tSrx.configPeakOutputReverse(-1,0);
-
-    //Tells the talon that it should current limit its self so that we dont blow a 40Amp breaker.
-    tSrx.configPeakCurrentLimit(40, 0);
-    tSrx.enableCurrentLimit(true);
-    tSrx.configContinuousCurrentLimit(40, 0);
-    //The max output current is 40Amps for .25 of a second.
-    tSrx.configPeakCurrentDuration(250, 0);
-
-    //Tells the talon that it should only apply 12 volts (or less) to the motor.
-    tSrx.configVoltageCompSaturation(12, 0);
-  }
 	public void singleDrive(double moveValue)
 	{
 		setMotorOutputs(limitValue(moveValue), limitValue(moveValue));
@@ -135,7 +119,7 @@ public final class MotorControl
 				rightMotorSpeed = -Math.max(-moveValue, -rotateValue);
 			}
 		}
-		setMotorOutputs(-rightMotorSpeed, -leftMotorSpeed);
+		setMotorOutputs(rightMotorSpeed, leftMotorSpeed);
   	}
   
 

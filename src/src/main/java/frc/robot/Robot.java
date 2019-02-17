@@ -29,6 +29,9 @@ public class Robot extends TimedRobot {
   public static Elevator elevator;
   public static Wrist wrist;
 
+
+  public static final double ftpersec = 14.39;
+  public static final double ftPerSecWithFriction = 11.66; //actual roughly 8.6ft/sec
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
