@@ -70,7 +70,31 @@ public final class MotorControl
 		}
 	}
 
-	public void switchDrive(boolean moveValue)
+	public void intakeHOG(boolean moveValue)
+	{
+		if(moveValue)
+		{
+			setMotorOutputs(0, -1);
+		}
+		else
+		{
+			setMotorOutputs(0, 0);
+		}
+	}
+	
+	public void outtakeHOG(boolean moveValue)
+	{
+		if(moveValue)
+		{
+			setMotorOutputs(0, 1);
+		}
+		else
+		{
+			setMotorOutputs(0, 0);
+		}
+	}
+
+	public void pneumaticDrive(boolean moveValue)
 	{
 		if(moveValue)
 		{

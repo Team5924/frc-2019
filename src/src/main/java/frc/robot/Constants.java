@@ -16,4 +16,6 @@ public class Constants
     public static int d_rearLeftBottomLeft = 8;
 
     public static int w_wristId = 7;
+
+    public static int HOGId = 11;
 }

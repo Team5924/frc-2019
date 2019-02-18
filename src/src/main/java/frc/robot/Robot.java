@@ -28,6 +28,7 @@ public class Robot extends TimedRobot {
   public static DriveTrain driveTrain;
   public static Elevator elevator;
   public static Wrist wrist;
+  public static HandOfGod handOfGod;
 
 
   public static final double ftpersec = 14.39;
