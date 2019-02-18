@@ -57,16 +57,16 @@ public final class MotorControl
 		talon6 = leftBack;
   	}
 
-	public void singleDrive(double moveValue)
+	public void buttonDrive(int moveValue)
 	{
-		setMotorOutputs(limitValue(moveValue), limitValue(moveValue));
-	}
-
-	public void buttonDrive(boolean moveValue)
-	{
-		if(Robot.e_oi.getXboxButton2())
+		switch(moveValue)
 		{
-			//needs work
+			case 0: 
+			case 1:
+			case 2: 
+			case 3:
+			case 4: 
+			case 5: 
 		}
 	}
 

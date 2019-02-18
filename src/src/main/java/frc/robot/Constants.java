@@ -4,9 +4,7 @@ package frc.robot;
 public class Constants
 {
     public static final int kElevatorMasterId = 3;
-    public static final int kElevatorLeftSlaveBId = 4;
-    public static final int kElevatorLeftSlaveAId = 5;
-    public static final int kElevatorRightSlaveId = 6;
+    public static final int kElevatorLeftSlaveId = 5;
 
     public static int d_rearRightTop = 0;
     public static int d_rearRightBottomRight = 1;

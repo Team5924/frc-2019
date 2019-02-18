@@ -21,9 +21,24 @@ public class ElevatorCommand extends Command {
   @Override
   protected void execute() 
   {
-    Robot.elevator.buttonDrive(Robot.e_oi.getXboxButton2());
-    Robot.elevator.buttonDrive(Robot.e_oi.getXboxButton3());
-    Robot.elevator.buttonDrive(Robot.e_oi.getXboxButton4());
+    if(Robot.e_oi.getXboxButton2())
+    {
+      Robot.elevator.buttonDrive(0);
+    }
+    if(Robot.e_oi.getXboxButton3())
+    {
+      Robot.elevator.buttonDrive(2);
+    }
+    if(Robot.e_oi.getXboxButton4())
+    {
+      Robot.elevator.buttonDrive(4);
+    }
+    switch(Robot.e_oi.getXboxPOV())
+    {
+      case 4: Robot.elevator.buttonDrive(1); break;
+      case 2: Robot.elevator.buttonDrive(3); break;
+      case 0: Robot.elevator.buttonDrive(5);
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -37,7 +52,7 @@ public class ElevatorCommand extends Command {
   @Override
   protected void end() 
   {
-    Robot.elevator.buttonDrive(false);
+    Robot.elevator.buttonDrive(0);
   }
 
   // Called when another command which requires one or more of the same

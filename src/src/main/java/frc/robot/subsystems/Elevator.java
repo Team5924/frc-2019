@@ -13,18 +13,15 @@ public class Elevator extends Subsystem
 {
 
     private static Elevator mInstance = null;
-    private final TalonSRX mMaster, mRightSlave, mLeftSlaveA, mLeftSlaveB;
+    private final TalonSRX mMaster,  mLeftSlave;
     MotorControl motorControl;
 
     public Elevator()
     {
         mMaster = new TalonSRX(Constants.kElevatorMasterId);
-        mRightSlave = new TalonSRX(Constants.kElevatorMasterId);
-        mLeftSlaveA = new TalonSRX(Constants.kElevatorMasterId);
-        mLeftSlaveB = new TalonSRX(Constants.kElevatorMasterId);
-        mMaster.enableCurrentLimit(true);
+        mLeftSlave = new TalonSRX(Constants.kElevatorLeftSlaveId);
 
-        mMaster.selectProfileSlot(0, 0);
+        mMaster.enableCurrentLimit(true);
 
         mMaster.overrideLimitSwitchesEnable(true);
         mMaster.overrideSoftLimitsEnable(false);
@@ -34,12 +31,8 @@ public class Elevator extends Subsystem
         mMaster.setInverted(true);
         mMaster.setSensorPhase(true);
 
-        mRightSlave.set(ControlMode.Follower, mMaster.getDeviceID());
-        mLeftSlaveA.set(ControlMode.Follower, mMaster.getDeviceID());
-        mLeftSlaveB.set(ControlMode.Follower, mMaster.getDeviceID());
-        mRightSlave.setInverted(true);
-        mLeftSlaveA.setInverted(false);
-        mLeftSlaveB.setInverted(false);
+        mLeftSlave.set(ControlMode.Follower, mMaster.getDeviceID());
+        mLeftSlave.setInverted(false);
 
         motorControl = new MotorControl(mMaster);
     }
@@ -50,11 +43,11 @@ public class Elevator extends Subsystem
         }
         return mInstance;
     }
-
-    public void buttonDrive(boolean moveValue)
-	{
-		buttonDrive(moveValue);
-	}
+    
+    public void buttonDrive(int moveValue)
+    {
+        motorControl.buttonDrive(moveValue);
+    }
 
     @Override
     public void initDefaultCommand() {

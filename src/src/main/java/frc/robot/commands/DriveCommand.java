@@ -25,8 +25,7 @@ public class DriveCommand extends Command {
   {
     //Robot.driveTrain.driveArcade(Robot.m_oi.driveControl.getY(Hand.kLeft),Robot.m_oi.driveControl.getX(Hand.kRight));
     
-    //Robot.driveTrain.driveTank(Robot.m_oi.getXboxYAxis()*0.2,Robot.m_oi.getXboxZRotate()*0.3);
-    double time2 = System.currentTimeMillis();
+    Robot.driveTrain.driveTank(Robot.m_oi.getXboxYAxis()*0.7,Robot.m_oi.getXboxZRotate()* 0.70);   /*double time2 = System.currentTimeMillis();
     System.out.println(time2-time);
     if(time2-time<2000)
     {
@@ -35,6 +34,7 @@ public class DriveCommand extends Command {
     }
     else 
     Robot.driveTrain.driveTank(0,0);
+    */
   }
 
   // Make this return true when this Command no longer needs to run execute()

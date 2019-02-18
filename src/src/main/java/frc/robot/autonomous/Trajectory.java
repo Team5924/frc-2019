@@ -14,8 +14,9 @@ import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.SpeedController;
 import jaci.pathfinder.PathfinderFRC;
 
-/*@Override
-  public void autonomousInit() {
+@Override
+  public void autonomousInit() 
+  {
     Trajectory left_trajectory = PathfinderFRC.getTrajectory(k_path_name + ".left");
     Trajectory right_trajectory = PathfinderFRC.getTrajectory(k_path_name + ".right");
 
@@ -33,6 +34,5 @@ import jaci.pathfinder.PathfinderFRC;
     m_follower_notifier = new Notifier(this::followPath);
     m_follower_notifier.startPeriodic(left_trajectory.get(0).dt);
   }
-*/
 
 

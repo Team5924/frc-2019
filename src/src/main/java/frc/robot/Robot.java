@@ -44,6 +44,9 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     m_oi = new OI();
     driveTrain = new DriveTrain();
+    elevator = new Elevator();
+    wrist = new Wrist();
+    handOfGod = new HandOfGod();
     // chooser.addObject("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
   }

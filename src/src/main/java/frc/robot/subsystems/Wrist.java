@@ -27,6 +27,10 @@ public class Wrist extends Subsystem
         return mInstance;
     }
 
+    public void pneumaticDrive(boolean moveValue)
+    {
+        motorControl.pneumaticDrive(moveValue);
+    }
     @Override
     public void initDefaultCommand() {
       // Set the default command for a subsystem here.
