@@ -1,17 +1,16 @@
-package frc.robot.subsystems;
+package frc.team5924.robot.subsystems;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
-import frc.robot.Constants;
-import frc.robot.commands.HandOfGodCommand;
-import frc.robot.subsystems.MotorControl;
+import frc.team5924.robot.Constants;
+import frc.team5924.robot.commands.DoryCommand;
+import frc.team5924.robot.subsystems.MotorControl;
 
 /**
  * Add your docs here.
  */
-public class HandOfGod extends Subsystem {
+public class Dory extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
@@ -19,7 +18,7 @@ public class HandOfGod extends Subsystem {
   MotorControl motorControl;
 
 
-  public HandOfGod()
+  public Dory()
   {
     mMaster = new TalonSRX(Constants.HOGId);
 
@@ -48,19 +47,14 @@ public class HandOfGod extends Subsystem {
   }
 
 
-  public void intakeHOG(boolean bool)
+  public void turnDegrees(double moveValue)
   {
-    motorControl.intakeHOG(bool);
-  }
-
-  public void outtakeHOG(boolean bool)
-  {
-    motorControl.outtakeHOG(bool);
+    motorControl.turnDegrees(moveValue);
   }
 
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
-    setDefaultCommand(new HandOfGodCommand());
+    setDefaultCommand(new DoryCommand());
   }
 }

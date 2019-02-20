@@ -1,11 +1,11 @@
-package frc.robot.subsystems;
+package frc.team5924.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
-import frc.robot.Constants;
-import frc.robot.commands.ElevatorCommand;
-import frc.robot.subsystems.MotorControl;
+import frc.team5924.robot.Constants;
+import frc.team5924.robot.commands.ElevatorCommand;
+import frc.team5924.robot.subsystems.MotorControl;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 

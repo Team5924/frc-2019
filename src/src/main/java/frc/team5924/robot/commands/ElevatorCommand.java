@@ -1,40 +1,44 @@
-package frc.robot.commands;
+package frc.team5924.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.Robot;
+import frc.team5924.robot.Robot;
 
-public class DriveCommand extends Command {
-  
-  double time;
-  public DriveCommand() 
+public class ElevatorCommand extends Command {
+  public ElevatorCommand() 
   {
     // Use requires() here to declare subsystem dependencies
-    requires(Robot.driveTrain);
+    requires(Robot.elevator);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() 
   {
-    time = System.currentTimeMillis();
+    //try to always start at bottom
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() 
   {
-    //Robot.driveTrain.driveArcade(Robot.m_oi.driveControl.getY(Hand.kLeft),Robot.m_oi.driveControl.getX(Hand.kRight));
-    
-    Robot.driveTrain.driveTank(Robot.m_oi.getXboxYAxis()*0.7,Robot.m_oi.getXboxZRotate()* 0.70);   /*double time2 = System.currentTimeMillis();
-    System.out.println(time2-time);
-    if(time2-time<2000)
+    if(Robot.e_oi.getXboxButton2())
     {
-      System.out.println("driving");
-      Robot.driveTrain.driveTank(-0.3,-0.4);
+      Robot.elevator.buttonDrive(0);
     }
-    else 
-    Robot.driveTrain.driveTank(0,0);
-    */
+    if(Robot.e_oi.getXboxButton3())
+    {
+      Robot.elevator.buttonDrive(2);
+    }
+    if(Robot.e_oi.getXboxButton4())
+    {
+      Robot.elevator.buttonDrive(4);
+    }
+    switch(Robot.e_oi.getXboxPOV())
+    {
+      case 4: Robot.elevator.buttonDrive(1); break;
+      case 6: Robot.elevator.buttonDrive(3); break;
+      case 0: Robot.elevator.buttonDrive(5);
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -48,7 +52,7 @@ public class DriveCommand extends Command {
   @Override
   protected void end() 
   {
-    Robot.driveTrain.driveArcade(0, 0);
+    Robot.elevator.buttonDrive(0);
   }
 
   // Called when another command which requires one or more of the same

@@ -1,29 +1,27 @@
-package frc.robot.commands;
+package frc.team5924.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.Robot;
+import frc.team5924.robot.Robot;
 
-public class WristCommand extends Command {
-  public WristCommand() 
+public class DoryCommand extends Command {
+  public DoryCommand() 
   {
     // Use requires() here to declare subsystem dependencies
-    requires(Robot.wrist);
+    requires(Robot.dory);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() 
   {
-    Robot.wrist.pneumaticDrive(false);
+    Robot.dory.turnDegrees(0);
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() 
   {
-    Robot.wrist.pneumaticDrive(Robot.e_oi.getXboxButton2());
-    Robot.wrist.pneumaticDrive(Robot.e_oi.getXboxButton3());
-    Robot.wrist.pneumaticDrive(Robot.e_oi.getXboxButton4());
+    Robot.dory.turnDegrees(Robot.e_oi.getXboxXAxis());
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -37,7 +35,7 @@ public class WristCommand extends Command {
   @Override
   protected void end() 
   {
-    Robot.wrist.pneumaticDrive(false);
+    Robot.dory.turnDegrees(0);
   }
 
   // Called when another command which requires one or more of the same

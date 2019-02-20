@@ -1,4 +1,4 @@
-package frc.robot;
+package frc.team5924.robot;
 
 
 public class Constants
@@ -16,4 +16,15 @@ public class Constants
     public static int w_wristId = 7;
 
     public static int HOGId = 11;
+
+
+    public static final int k_left_channel = 0;
+    public static final int k_right_channel = 1;
+
+    public static final int k_left_encoder_port_a = 0;
+    public static final int k_left_encoder_port_b = 1;
+    public static final int k_right_encoder_port_a = 2;
+    public static final int k_right_encoder_port_b = 3;
+
+    public static final int k_gyro_port = 0;
 }

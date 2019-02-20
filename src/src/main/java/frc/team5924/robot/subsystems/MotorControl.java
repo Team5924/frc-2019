@@ -1,9 +1,8 @@
-package frc.robot.subsystems;
+package frc.team5924.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
-import frc.robot.Robot;
 
 public final class MotorControl
 {
@@ -94,12 +93,10 @@ public final class MotorControl
 		}
 	}
 
-	public void pneumaticDrive(boolean moveValue)
+
+	public void turnDegrees(double moveValue)
 	{
-		if(moveValue)
-		{
-			//setMotorOutputs
-		}
+
 	}
 
 	public void driveTank(double leftMoveValue, double rightMoveValue)

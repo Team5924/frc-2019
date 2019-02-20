@@ -1,3 +1,7 @@
+package frc.team5924.robot;
+
+import edu.wpi.first.wpilibj.Compressor;
+
 /*----------------------------------------------------------------------------*/
 /* Copyright (c) 2017-2018 FIRST. All Rights Reserved.                        */
 /* Open Source Software - may be modified and shared by FRC teams. The code   */
@@ -5,14 +9,12 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot;
-
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.subsystems.*;
+import frc.team5924.robot.subsystems.*;
 
 
 /**
@@ -27,9 +29,10 @@ public class Robot extends TimedRobot {
   public static OI e_oi; //elevator joystick
   public static DriveTrain driveTrain;
   public static Elevator elevator;
-  public static Wrist wrist;
+  public static Dory dory;
   public static HandOfGod handOfGod;
-
+  public static HatchGrabber hatchGrabber;
+  public static Compressor c;
 
   public static final double ftpersec = 14.39;
   public static final double ftPerSecWithFriction = 11.66; //actual roughly 8.6ft/sec
@@ -45,8 +48,12 @@ public class Robot extends TimedRobot {
     m_oi = new OI();
     driveTrain = new DriveTrain();
     elevator = new Elevator();
-    wrist = new Wrist();
+    dory = new Dory();
     handOfGod = new HandOfGod();
+    hatchGrabber = new HatchGrabber();
+    c = new Compressor();
+    c.setClosedLoopControl(true);
+
     // chooser.addObject("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
   }
@@ -70,6 +77,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void disabledInit() {
+    c.setClosedLoopControl(false);
   }
 
   @Override

@@ -1,15 +1,15 @@
-package frc.robot.commands;
+package frc.team5924.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.Robot;
+import frc.team5924.robot.Robot;
 
-public class HandOfGodCommand extends Command {
+public class HatchGrabberCommand extends Command {
   
   double time;
-  public HandOfGodCommand() 
+  public HatchGrabberCommand() 
   {
     // Use requires() here to declare subsystem dependencies
-    requires(Robot.handOfGod);
+    requires(Robot.hatchGrabber);
   }
 
   // Called just before this Command runs the first time
@@ -23,30 +23,17 @@ public class HandOfGodCommand extends Command {
   @Override
   protected void execute() 
   {
-    double time2 = System.currentTimeMillis();
-    if(Robot.e_oi.getXboxButton7())
+    if(Robot.e_oi.getXboxButton1())
     {
-        if(time2-time>2500)
+        if(Robot.hatchGrabber.getSolenoid())
         {
-            Robot.handOfGod.outtakeHOG(false);
+            Robot.hatchGrabber.pneumaticDrive(false);
         }
         else
         {
-            Robot.handOfGod.outtakeHOG(true);
+            Robot.hatchGrabber.pneumaticDrive(true);
         }
     }
-    if(Robot.e_oi.getXboxButton8())
-    {
-        if(time2-time>2500)
-        {
-            Robot.handOfGod.intakeHOG(false);
-        }
-        else
-        {
-            Robot.handOfGod.intakeHOG(true);
-        }
-    }
-
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -60,7 +47,7 @@ public class HandOfGodCommand extends Command {
   @Override
   protected void end() 
   {
-    Robot.driveTrain.driveArcade(0, 0);
+    Robot.hatchGrabber.pneumaticDrive(false);
   }
 
   // Called when another command which requires one or more of the same

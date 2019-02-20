@@ -1,44 +1,52 @@
-package frc.robot.commands;
+package frc.team5924.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.Robot;
+import frc.team5924.robot.Robot;
 
-public class ElevatorCommand extends Command {
-  public ElevatorCommand() 
+public class HandOfGodCommand extends Command {
+  
+  double time;
+  public HandOfGodCommand() 
   {
     // Use requires() here to declare subsystem dependencies
-    requires(Robot.elevator);
+    requires(Robot.handOfGod);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() 
   {
-    //try to always start at bottom
+    time = System.currentTimeMillis();
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() 
   {
-    if(Robot.e_oi.getXboxButton2())
+    double time2 = System.currentTimeMillis();
+    if(Robot.e_oi.getXboxButton7())
     {
-      Robot.elevator.buttonDrive(0);
+        if(time2-time>2500)
+        {
+            Robot.handOfGod.outtakeHOG(false);
+        }
+        else
+        {
+            Robot.handOfGod.outtakeHOG(true);
+        }
     }
-    if(Robot.e_oi.getXboxButton3())
+    if(Robot.e_oi.getXboxButton8())
     {
-      Robot.elevator.buttonDrive(2);
+        if(time2-time>2500)
+        {
+            Robot.handOfGod.intakeHOG(false);
+        }
+        else
+        {
+            Robot.handOfGod.intakeHOG(true);
+        }
     }
-    if(Robot.e_oi.getXboxButton4())
-    {
-      Robot.elevator.buttonDrive(4);
-    }
-    switch(Robot.e_oi.getXboxPOV())
-    {
-      case 4: Robot.elevator.buttonDrive(1); break;
-      case 2: Robot.elevator.buttonDrive(3); break;
-      case 0: Robot.elevator.buttonDrive(5);
-    }
+
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -52,7 +60,7 @@ public class ElevatorCommand extends Command {
   @Override
   protected void end() 
   {
-    Robot.elevator.buttonDrive(0);
+    Robot.handOfGod.intakeHOG(false);
   }
 
   // Called when another command which requires one or more of the same
