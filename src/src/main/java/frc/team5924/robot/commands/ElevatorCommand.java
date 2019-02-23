@@ -15,6 +15,7 @@ public class ElevatorCommand extends Command {
   protected void initialize() 
   {
     //try to always start at bottom
+    Robot.elevator.buttonDrive(0);
   }
 
   // Called repeatedly when this Command is scheduled to run
