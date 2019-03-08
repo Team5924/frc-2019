@@ -15,7 +15,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.team5924.robot.subsystems.*;
-
+import frc.team5924.robot.commands.AutoCommand;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -37,7 +37,8 @@ public class Robot extends TimedRobot {
   public static final double ftpersec = 14.39;
   public static final double ftPerSecWithFriction = 11.66; //actual roughly 8.6ft/sec
   Command m_autonomousCommand;
-  SendableChooser<Command> m_chooser = new SendableChooser<>();
+  //SendableChooser<Command> m_chooser = new SendableChooser<>();
+  SendableChooser<String> m_chooser = new SendableChooser<>();
 
   /**
    * This function is run when the robot is first started up and should be
@@ -55,7 +56,13 @@ public class Robot extends TimedRobot {
     c.setClosedLoopControl(true);
 
     // chooser.addObject("My Auto", new MyAutoCommand());
-    SmartDashboard.putData("Auto mode", m_chooser);
+    // SmartDashboard.putData("Auto mode", m_chooser);
+    // Create a droplist on the dashboard to pick the left or right path
+		m_chooser.addDefault("Right Auto", "R");
+    m_chooser.addObject("Left Auto", "L");
+    // Test Auto just moves a straight path
+		m_chooser.addObject("Test Auto", "T");
+		SmartDashboard.putData("Auto mode", m_chooser);
   }
 
   /**
@@ -98,7 +105,9 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousInit() {
-    m_autonomousCommand = m_chooser.getSelected();
+    String selectedAuto = m_chooser.getSelected();
+    // may need to pass other game data to AutoCommand like last year
+    m_autonomousCommand = new AutoCommand(selectedAuto);
 
     /*
      * String autoSelected = SmartDashboard.getString("Auto Selector",
