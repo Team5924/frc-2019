@@ -41,6 +41,7 @@ public class DriveTrain extends Subsystem {
     rrbl.set(ControlMode.Follower, rrt.getDeviceID());
 
     //Config all talons.
+    
     configTalons(rrt);
     configTalons(rrbr);
     configTalons(rrbl);

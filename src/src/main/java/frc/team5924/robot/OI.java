@@ -4,10 +4,12 @@ import edu.wpi.first.wpilibj.Joystick;
 
 public class OI
 {
-    public Joystick controller = new Joystick(1);
+    public Joystick controller;
 
-    public OI()
-    {}
+    public OI(int value)
+    {
+      controller = new Joystick(value);
+    }
 
     public double getXboxXAxis() 
     {

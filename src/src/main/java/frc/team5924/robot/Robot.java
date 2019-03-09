@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.team5924.robot.subsystems.*;
@@ -31,8 +32,8 @@ public class Robot extends TimedRobot {
   public static Elevator elevator;
   public static Dory dory;
   public static HandOfGod handOfGod;
-  public static HatchGrabber hatchGrabber;
-  public static Compressor c;
+  //public static HatchGrabber hatchGrabber;
+  //public static Compressor c;
 
   public static final double ftpersec = 14.39;
   public static final double ftPerSecWithFriction = 11.66; //actual roughly 8.6ft/sec
@@ -45,14 +46,15 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
-    m_oi = new OI();
+    m_oi = new OI(1);
+    e_oi = new OI(2);
     driveTrain = new DriveTrain();
     elevator = new Elevator();
     dory = new Dory();
     handOfGod = new HandOfGod();
-    hatchGrabber = new HatchGrabber();
-    c = new Compressor();
-    c.setClosedLoopControl(true);
+   //hatchGrabber = new HatchGrabber();
+    //c = new Compressor();
+    //c.setClosedLoopControl(false);
 
     // chooser.addObject("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
@@ -77,7 +79,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void disabledInit() {
-    c.setClosedLoopControl(false);
+    //c.setClosedLoopControl(false);
   }
 
   @Override

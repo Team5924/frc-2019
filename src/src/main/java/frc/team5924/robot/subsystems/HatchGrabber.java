@@ -1,12 +1,14 @@
+
 package frc.team5924.robot.subsystems;
 
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import frc.team5924.robot.commands.HatchGrabberCommand;
+//import frc.team5924.robot.commands.HatchGrabberCommand;
 
 /**
  * Add your docs here.
  */
+/*
 public class HatchGrabber extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
@@ -32,4 +34,4 @@ public class HatchGrabber extends Subsystem {
     // Set the default command for a subsystem here.
     setDefaultCommand(new HatchGrabberCommand());
   }
-}
+}*/

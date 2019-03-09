@@ -23,18 +23,18 @@ public class DriveCommand extends Command {
   @Override
   protected void execute() 
   {
-    //Robot.driveTrain.driveArcade(Robot.m_oi.driveControl.getY(Hand.kLeft),Robot.m_oi.driveControl.getX(Hand.kRight));
+    Robot.driveTrain.driveArcade(Robot.m_oi.getXboxYAxis(),-Robot.m_oi.getXboxZAxis());
     
-    Robot.driveTrain.driveTank(Robot.m_oi.getXboxYAxis()*0.7,Robot.m_oi.getXboxZRotate()* 0.70);   /*double time2 = System.currentTimeMillis();
-    System.out.println(time2-time);
+    //Robot.driveTrain.driveTank(Robot.m_oi.getXboxYAxis()*0.7,Robot.m_oi.getXboxZRotate()* 0.7);   /*double time2 = System.currentTimeMillis();
+    /*System.out.println(time2-time);
     if(time2-time<2000)
     {
       System.out.println("driving");
       Robot.driveTrain.driveTank(-0.3,-0.4);
     }
-    else 
-    Robot.driveTrain.driveTank(0,0);
-    */
+    else */
+    //Robot.driveTrain.driveTank(.7,.7);
+    
   }
 
   // Make this return true when this Command no longer needs to run execute()
