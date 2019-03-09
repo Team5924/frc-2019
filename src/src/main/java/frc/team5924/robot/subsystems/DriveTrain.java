@@ -4,6 +4,8 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.PIDController;
+import edu.wpi.first.wpilibj.PIDOutput;
 import frc.team5924.robot.Constants;
 import frc.team5924.robot.commands.DriveCommand;
 import frc.team5924.robot.subsystems.MotorControl;
@@ -82,6 +84,10 @@ public class DriveTrain extends Subsystem {
     motorControl.driveTank(moveValue, rotateValue);
   }
 
+  public void setMotorOutputs(double left, double right)
+  {
+    motorControl.setMotorOutputs(left, right);
+  }
 
   @Override
   public void initDefaultCommand() {
