@@ -1,0 +1,10 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Limelight",
+            "request": "launch",
+            "mainClass": "frc.team5924.robot.subsystems.Limelight"
+        }
+    ]
+}

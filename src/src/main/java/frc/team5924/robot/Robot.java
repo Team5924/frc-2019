@@ -16,7 +16,7 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.team5924.robot.subsystems.*;
-import frc.team5924.robot.commands.AutoCommand;
+import frc.team5924.robot.commands.*;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -32,14 +32,17 @@ public class Robot extends TimedRobot {
   public static Elevator elevator;
   public static Dory dory;
   public static HandOfGod handOfGod;
+  public static Limelight limeLight;
   //public static HatchGrabber hatchGrabber;
   //public static Compressor c;
 
   public static final double ftpersec = 14.39;
   public static final double ftPerSecWithFriction = 11.66; //actual roughly 8.6ft/sec
-  Command m_autonomousCommand;
+  private Command m_autonomousCommand;
+  private Command m_teleopCommand;
   //SendableChooser<Command> m_chooser = new SendableChooser<>();
   SendableChooser<String> m_chooser = new SendableChooser<>();
+  SendableChooser<Command> m_chooseCommand = new SendableChooser<>();
 
   /**
    * This function is run when the robot is first started up and should be
@@ -53,6 +56,7 @@ public class Robot extends TimedRobot {
     elevator = new Elevator();
     dory = new Dory();
     handOfGod = new HandOfGod();
+    limeLight = new Limelight();
    //hatchGrabber = new HatchGrabber();
     //c = new Compressor();
     //c.setClosedLoopControl(false);
@@ -64,7 +68,15 @@ public class Robot extends TimedRobot {
     m_chooser.addObject("Left Auto", "L");
     // Test Auto just moves a straight path
 		m_chooser.addObject("Test Auto", "T");
-		SmartDashboard.putData("Auto mode", m_chooser);
+    SmartDashboard.putData("Auto mode", m_chooser);
+    
+    // Present a menu of commands on the dashboard in teleop mode
+    m_chooseCommand.addDefault("Drive Command", new DriveCommand());
+    m_chooseCommand.addObject("Dory Command", new DoryCommand());
+    m_chooseCommand.addObject("Elevator Command", new ElevatorCommand());
+    m_chooseCommand.addObject("HandOfGod Command", new HandOfGodCommand());
+    m_chooseCommand.addObject("LimeLightTarget Command", new LimeLightTargetCommand());    
+    SmartDashboard.putData("Teleop mode", m_chooseCommand);    
   }
 
   /**
@@ -141,6 +153,12 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
+    // Instantiate the teleop command chosen
+    m_teleopCommand = m_chooseCommand.getSelected();
+    // schedule the teleop command (example)
+    if (m_teleopCommand != null) {
+      m_teleopCommand.start();
+    }
   }
 
   /**
@@ -148,7 +166,6 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopPeriodic() {
-
     Scheduler.getInstance().run();
   }
 
