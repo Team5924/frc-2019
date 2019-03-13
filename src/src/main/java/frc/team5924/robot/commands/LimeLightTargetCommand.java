@@ -15,8 +15,8 @@ public class LimeLightTargetCommand extends Command {
   public LimeLightTargetCommand() 
   {
     // Use requires() here to declare subsystem dependencies
-    //requires(Robot.limeLight);
     requires(Robot.limeLight);
+    requires(Robot.driveTrain);
   }
 
   // Called just before this Command runs the first time

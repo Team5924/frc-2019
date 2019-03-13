@@ -11,7 +11,7 @@ public class AutoTargetCommand extends Command {
   public AutoTargetCommand() 
   {
     // Use requires() here to declare subsystem dependencies
-    //requires(Robot.limeLight);
+    requires(Robot.limeLight);
     requires(Robot.driveTrain);
   }
 
