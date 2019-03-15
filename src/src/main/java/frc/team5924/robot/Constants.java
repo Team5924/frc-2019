@@ -16,7 +16,7 @@ public class Constants
     public static int w_wristId = 0;
 
     public static int HOGId = 0;
-
+    public static int ClimberId = 0;
 
     public static final int k_left_channel = 0;
     public static final int k_right_channel = 1;
@@ -35,10 +35,10 @@ public class Constants
     public static final String LEFT_PATH1_RIGHT_CSV = "BLUERightFirstHatch.left.pf1.csv";
     public static final String LEFT_PATH2_RIGHT_CSV = "";
     public static final String LEFT_PATH3_RIGHT_CSV = "";        
-    public static final String RIGHT_PATH1_LEFT_CSV = "";
+    public static final String RIGHT_PATH1_LEFT_CSV = "BLUELeftFirstHatch.right.pf1.csv";
     public static final String RIGHT_PATH2_LEFT_CSV = "";
     public static final String RIGHT_PATH3_LEFT_CSV = "";        
-    public static final String RIGHT_PATH1_RIGHT_CSV = "";
+    public static final String RIGHT_PATH1_RIGHT_CSV = "BLUERightFirstHatch.right.pf1.csv";
     public static final String RIGHT_PATH2_RIGHT_CSV = "";
     public static final String RIGHT_PATH3_RIGHT_CSV = "";        
     

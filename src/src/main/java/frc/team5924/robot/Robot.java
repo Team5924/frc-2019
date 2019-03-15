@@ -1,5 +1,8 @@
 package frc.team5924.robot;
 
+import edu.wpi.cscore.UsbCamera;
+import edu.wpi.first.cameraserver.CameraServer;
+import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.Compressor;
 
 /*----------------------------------------------------------------------------*/
@@ -13,6 +16,7 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.interfaces.Gyro;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.team5924.robot.subsystems.*;
@@ -33,6 +37,8 @@ public class Robot extends TimedRobot {
   public static Dory dory;
   public static HandOfGod handOfGod;
   public static Limelight limeLight;
+  public static Climber climber;
+  public static Gyro gyro;
   //public static HatchGrabber hatchGrabber;
   //public static Compressor c;
 
@@ -43,7 +49,8 @@ public class Robot extends TimedRobot {
   //SendableChooser<Command> m_chooser = new SendableChooser<>();
   SendableChooser<String> m_chooser = new SendableChooser<>();
   SendableChooser<Command> m_chooseCommand = new SendableChooser<>();
-
+  public static double startTime;
+  public static double endTime;
   /**
    * This function is run when the robot is first started up and should be
    * used for any initialization code.
@@ -57,7 +64,10 @@ public class Robot extends TimedRobot {
     dory = new Dory();
     handOfGod = new HandOfGod();
     limeLight = new Limelight();
-   //hatchGrabber = new HatchGrabber();
+    gyro = new AnalogGyro(0);
+    UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
+    camera.setResolution(480,360);//240,144 (30 fps)
+    //hatchGrabber = new HatchGrabber();
     //c = new Compressor();
     //c.setClosedLoopControl(false);
 
@@ -76,7 +86,8 @@ public class Robot extends TimedRobot {
     m_chooseCommand.addObject("Elevator Command", new ElevatorCommand());
     m_chooseCommand.addObject("HandOfGod Command", new HandOfGodCommand());
     m_chooseCommand.addObject("LimeLightTarget Command", new LimeLightTargetCommand());    
-    SmartDashboard.putData("Teleop mode", m_chooseCommand);    
+    SmartDashboard.putData("Teleop mode", m_chooseCommand); 
+    startTime = System.currentTimeMillis();   
   }
 
   /**
@@ -89,6 +100,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
+    endTime = System.currentTimeMillis();   
   }
 
   /**
@@ -142,6 +154,16 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousPeriodic() {
     Scheduler.getInstance().run();
+    System.out.println("Autonomous");
+    if(m_oi.getXboxButton2())
+    {
+      
+      teleopInit();
+      while(true)
+      {
+        teleopPeriodic();
+      }
+    }
   }
 
   @Override

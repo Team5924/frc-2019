@@ -26,7 +26,7 @@ public class DrivePathCommand extends Command {
     private static double MAX_VELOCITY = 3.553968; // in meter/s which equals to 11.66 ft/s 
     private static double kA = 0;
     private static double kP_TURN = 0.8; // in all examples this is 0.8, but some other teams use 0.05. ??
-    private static final int TICKS_PER_REVOLUTION = 1024;
+    private static final int TICKS_PER_REVOLUTION = 4096;
     private static final double WHEEL_DIAMETER = 6.0 / 12.0; // 6 inches
 
 
@@ -54,7 +54,7 @@ public class DrivePathCommand extends Command {
         m_right_encoder = new Encoder(Constants.k_right_encoder_port_a, Constants.k_right_encoder_port_b);
         // if the left encoder is inversely mounted like last year, need to use these constructors instead
         //m_left_encoder = new Encoder(Constants.k_left_encoder_port_a, Constants.k_left_encoder_port_b, true, Encoder.EncodingType.k4X);
-        //m_right_encoder = new Encoder(Constants.k_right_encoder_port_a, Constants.k_right_encoder_port_b, false, Encoder.EncodingType.k4X);
+        //m_right_encoder = new Encoder(Constants.k_right_encoder_port_a, Constants.k_right_encoder_port_b, true, Encoder.EncodingType.k4X);
         m_gyro = new AnalogGyro(Constants.k_gyro_port);
     }
 

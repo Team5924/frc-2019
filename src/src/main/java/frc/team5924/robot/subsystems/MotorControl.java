@@ -61,9 +61,9 @@ public final class MotorControl
 		switch(moveValue)
 		{
 			case 0: 
-			case 1:
+			case 1:	
 			case 2: 
-			case 3:
+			case 3:	
 			case 4: 
 			case 5: 
 		}
