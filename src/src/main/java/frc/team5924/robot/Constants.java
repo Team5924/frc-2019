@@ -21,6 +21,10 @@ public class Constants
     public static final int k_left_channel = 0;
     public static final int k_right_channel = 1;
 
+    // these are the digital IO channel for the switches
+    public static final int DRIVETRAIN_LEFT_SWITCH_CHANNEL = 8;
+    public static final int DRIVETRAIN_RIGHT_SWITCH_CHANNEL = 9;
+
     public static final int k_left_encoder_port_a = 0;
     public static final int k_left_encoder_port_b = 1;
     public static final int k_right_encoder_port_a = 2;

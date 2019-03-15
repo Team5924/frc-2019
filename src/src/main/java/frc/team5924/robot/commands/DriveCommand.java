@@ -17,13 +17,21 @@ public class DriveCommand extends Command {
   protected void initialize() 
   {
     time = System.currentTimeMillis();
+    Robot.driveTrain.resetCounter();
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() 
   {
-    Robot.driveTrain.driveArcade(Robot.m_oi.getXboxYAxis(),-Robot.m_oi.getXboxZAxis());
+    // move the robot only when switch is off
+    if(!Robot.driveTrain.isSwitchSet()){
+      Robot.driveTrain.driveArcade(Robot.m_oi.getXboxYAxis(),-Robot.m_oi.getXboxZAxis());
+    } else {
+      Robot.driveTrain.driveArcade(0, 0);
+      Robot.driveTrain.resetCounter();      // I don't know if this is required but where else do you reset the counter once it's stop?
+    }
+    
     
     //Robot.driveTrain.driveTank(Robot.m_oi.getXboxYAxis()*0.7,Robot.m_oi.getXboxZRotate()* 0.7);   /*double time2 = System.currentTimeMillis();
     /*System.out.println(time2-time);
@@ -41,7 +49,7 @@ public class DriveCommand extends Command {
   @Override
   protected boolean isFinished() 
   {
-    return false;
+    return Robot.driveTrain.isSwitchSet();
   }
 
   // Called once after isFinished returns true
