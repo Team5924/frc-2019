@@ -79,7 +79,7 @@ public class DrivePathCommand extends Command {
 
         left.configureEncoder(m_left_encoder.get(), TICKS_PER_REVOLUTION, WHEEL_DIAMETER);
         // You must tune the PID values on the following line!
-        // The first argument is the proportional gain. Usually this will be quite high
+        // The first argument is the proportional gain. Usually this will be quite high, usually 0.8 to 1.0
         // The second argument is the integral gain. This is unused for motion profiling
         // The third argument is the derivative gain. Tweak this if you are unhappy with the tracking of the trajectory
         // The fourth argument is the velocity ratio. This is 1 over the maximum velocity you provided in the 

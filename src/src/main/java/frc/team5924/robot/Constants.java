@@ -30,11 +30,11 @@ public class Constants
 
     // CSV Path Files
     public static final String LEFT_PATH1_LEFT_CSV = "BLUELeftFirstHatch.left.pf1.csv";
-    public static final String LEFT_PATH2_LEFT_CSV = "BLUELeftGoingBack.left.pf1.csv";
-    public static final String LEFT_PATH3_LEFT_CSV = "BLUELeftSecondHatch.left.pf1.csv";        
+    public static final String LEFT_PATH2_LEFT_CSV = "";
+    public static final String LEFT_PATH3_LEFT_CSV = "";        
     public static final String LEFT_PATH1_RIGHT_CSV = "BLUERightFirstHatch.left.pf1.csv";
-    public static final String LEFT_PATH2_RIGHT_CSV = "BLUERightGoingBack.left.pf1.csv";
-    public static final String LEFT_PATH3_RIGHT_CSV = "BLUERightSecondHatch.left.pf1.csv";        
+    public static final String LEFT_PATH2_RIGHT_CSV = "";
+    public static final String LEFT_PATH3_RIGHT_CSV = "";        
     public static final String RIGHT_PATH1_LEFT_CSV = "";
     public static final String RIGHT_PATH2_LEFT_CSV = "";
     public static final String RIGHT_PATH3_LEFT_CSV = "";        

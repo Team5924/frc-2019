@@ -13,11 +13,17 @@ import frc.team5924.robot.commands.LimeLightTargetCommand;
 public class Limelight extends Subsystem{
 
     // These numbers must be tuned for your Robot!  Be careful!
+    // Ways you can find STEER_K and DRIVE_K,
+    // 1, move the robot so that tx = 0, camera is pointing at the center of the tapes, 
     final double STEER_K = 0.03;                    // how hard to turn toward the target
     final double DRIVE_K = 0.26;                    // how hard to drive fwd toward the target
     final double DESIRED_TARGET_AREA = 13.0;        // Area of the target when the robot reaches the wall
     final double MAX_DRIVE = 0.7;                   // Simple speed limit so we don't drive too fast
     final int PIPELINE_NUMBER = 0;                  // Need to double check the pipeline number
+    final double XOFFSET = -24.50;                  // the horizontal offset in degrees, the camera is 9" from the center 
+                                                     // During the auto and manual mode, stop the robot 3' away from cargo ship hatch
+                                                     // then the tx = -24.50
+    final double YOFFSET = 21.87;                    // vertical ty = 21.87, target center is 8" above camera height
 
     private boolean m_LimelightHasValidTarget = false;
     private double m_LimelightDriveCommand = 0.0;
@@ -133,8 +139,8 @@ public class Limelight extends Subsystem{
     public void Update_Limelight_Tracking()
     {
             double tv = table.getEntry("tv").getDouble(0);
-            double tx = table.getEntry("tx").getDouble(0);
-            double ty = table.getEntry("ty").getDouble(0);
+            double tx = table.getEntry("tx").getDouble(0) + XOFFSET;
+            double ty = table.getEntry("ty").getDouble(0) + YOFFSET;
             double ta = table.getEntry("ta").getDouble(0);
 
             if (tv < 1.0)
