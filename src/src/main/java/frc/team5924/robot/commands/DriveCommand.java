@@ -56,7 +56,7 @@ public class DriveCommand extends Command {
   @Override
   protected boolean isFinished() 
   {
-    return Robot.driveTrain.isSwitchSet();
+    return false;
   }
 
   // Called once after isFinished returns true
