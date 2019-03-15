@@ -16,30 +16,39 @@ public class ElevatorCommand extends Command {
   {
     //try to always start at bottom
     Robot.elevator.buttonDrive(0);
+
     Robot.elevator.resetCounter();
+
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() 
   {
-    if(Robot.e_oi.getXboxButton2())
-    {
+    if(!Robot.elevator.isSwitchSet()){ 
+      // move elevator only when switch is off   
+      if(Robot.e_oi.getXboxButton2())
+      {
+        Robot.elevator.buttonDrive(0);
+      }
+      if(Robot.e_oi.getXboxButton3())
+      {
+        Robot.elevator.buttonDrive(2);
+      }
+      if(Robot.e_oi.getXboxButton4())
+      {
+        Robot.elevator.buttonDrive(4);
+      }
+      switch(Robot.e_oi.getXboxPOV())
+      {
+        case 4: Robot.elevator.buttonDrive(1); break;
+        case 6: Robot.elevator.buttonDrive(3); break;
+        case 0: Robot.elevator.buttonDrive(5);
+      }
+    } else {
+      // Stop elevator is switch is on
       Robot.elevator.buttonDrive(0);
-    }
-    if(Robot.e_oi.getXboxButton3())
-    {
-      Robot.elevator.buttonDrive(2);
-    }
-    if(Robot.e_oi.getXboxButton4())
-    {
-      Robot.elevator.buttonDrive(4);
-    }
-    switch(Robot.e_oi.getXboxPOV())
-    {
-      case 4: Robot.elevator.buttonDrive(1); break;
-      case 6: Robot.elevator.buttonDrive(3); break;
-      case 0: Robot.elevator.buttonDrive(5);
+      Robot.elevator.resetCounter();           
     }
 
     // move the robot only when switch is off

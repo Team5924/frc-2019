@@ -8,7 +8,6 @@ import frc.team5924.robot.commands.ElevatorCommand;
 import frc.team5924.robot.subsystems.MotorControl;
 import edu.wpi.first.wpilibj.Counter;
 import edu.wpi.first.wpilibj.DigitalInput;
-
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 
@@ -25,6 +24,13 @@ public class Elevator extends Subsystem
     {
         mMaster = new TalonSRX(Constants.kElevatorMasterId);
         mLeftSlave = new TalonSRX(Constants.kElevatorLeftSlaveId);
+
+        // switches to stop the elevator
+        topSwitch = new DigitalInput(Constants.ELEVATOR_TOP_SWITCH_CHANNEL);
+        bottomSwitch = new DigitalInput(Constants.ELEVATOR_BOTTOM_SWITCH_CHANNEL);
+        topCounter = new Counter(topSwitch);
+        bottomCounter = new Counter(bottomSwitch);
+        resetCounter();
 
         mMaster.enableCurrentLimit(true);
 
