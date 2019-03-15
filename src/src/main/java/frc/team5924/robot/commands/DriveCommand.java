@@ -18,7 +18,10 @@ public class DriveCommand extends Command {
   {
     time = System.currentTimeMillis();
     Robot.gyro.reset();
+
     Robot.driveTrain.resetCounter();
+
+
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -32,6 +35,8 @@ public class DriveCommand extends Command {
       Robot.driveTrain.driveArcade(-0.5 , Math.min(0.5, Math.max(angle/100, -0.5)));
     }
 
+
+
     // move the robot only when switch is off
     if(!Robot.driveTrain.isSwitchSet()){
       Robot.driveTrain.driveArcade(Robot.m_oi.getXboxYAxis(),-Robot.m_oi.getXboxZAxis());
@@ -40,6 +45,8 @@ public class DriveCommand extends Command {
       Robot.driveTrain.resetCounter();      // I don't know if this is required but where else do you reset the counter once it's stop?
     }
         
+
+
     Robot.driveTrain.driveTank(Robot.m_oi.getXboxYAxis()*0.7,Robot.m_oi.getXboxZRotate()* 0.7);   /*double time2 = System.currentTimeMillis();
     /*System.out.println(time2-time);
     if(time2-time<2000)

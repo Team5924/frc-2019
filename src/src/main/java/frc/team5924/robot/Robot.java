@@ -36,8 +36,11 @@ public class Robot extends TimedRobot {
   public static Elevator elevator;
   public static Dory dory;
   public static HandOfGod handOfGod;
+
+
   public static Limelight limeLight;
   public static Climber climber;
+
   public static Gyro gyro;
   //public static HatchGrabber hatchGrabber;
   //public static Compressor c;
@@ -63,7 +66,9 @@ public class Robot extends TimedRobot {
     elevator = new Elevator();
     dory = new Dory();
     handOfGod = new HandOfGod();
+
     limeLight = new Limelight();
+
     gyro = new AnalogGyro(0);
     UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
     camera.setResolution(480,360);//240,144 (30 fps)

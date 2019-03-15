@@ -16,6 +16,7 @@ public class ElevatorCommand extends Command {
   {
     //try to always start at bottom
     Robot.elevator.buttonDrive(0);
+    Robot.elevator.resetCounter();
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -39,6 +40,14 @@ public class ElevatorCommand extends Command {
       case 4: Robot.elevator.buttonDrive(1); break;
       case 6: Robot.elevator.buttonDrive(3); break;
       case 0: Robot.elevator.buttonDrive(5);
+    }
+
+    // move the robot only when switch is off
+    if(!Robot.driveTrain.isSwitchSet()){
+      Robot.driveTrain.driveArcade(Robot.m_oi.getXboxYAxis(),-Robot.m_oi.getXboxZAxis());
+    } else {
+      Robot.driveTrain.driveArcade(0, 0);
+      Robot.driveTrain.resetCounter();      // I don't know if this is required but where else do you reset the counter once it's stop?
     }
   }
 
