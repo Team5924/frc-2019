@@ -24,8 +24,9 @@ public class HatchGrabberCommand extends Command {
   @Override
   protected void execute() 
   {
-    if(Robot.e_oi.getXboxButton1())
-    {
+    if (!Robot.hatchGrabber.isSwitchSet()) {
+      if(Robot.e_oi.getXboxButton1())
+      {
         if(Robot.hatchGrabber.getSolenoid())
         {
             Robot.hatchGrabber.pneumaticDrive(false);
@@ -34,7 +35,12 @@ public class HatchGrabberCommand extends Command {
         {
             Robot.hatchGrabber.pneumaticDrive(true);
         }
+      }
     }
+    else {
+      Robot.hatchGrabber.pneumaticDrive(false);
+      Robot.hatchGrabber.resetCounter();
+    }  
   }
 
   // Make this return true when this Command no longer needs to run execute()

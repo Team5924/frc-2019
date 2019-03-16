@@ -17,6 +17,7 @@ public class HandOfGodCommand extends Command {
   protected void initialize() 
   {
     time = System.currentTimeMillis();
+    Robot.handOfGod.resetCounter();
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -24,8 +25,9 @@ public class HandOfGodCommand extends Command {
   protected void execute() 
   {
     double time2 = System.currentTimeMillis();
-    if(Robot.e_oi.getXboxButton7())
-    {
+    if (!Robot.handOfGod.isSwitchSet()) {
+      if(Robot.e_oi.getXboxButton7())
+      {
         if(time2-time>2500)
         {
             Robot.handOfGod.outtakeHOG(false);
@@ -34,9 +36,9 @@ public class HandOfGodCommand extends Command {
         {
             Robot.handOfGod.outtakeHOG(true);
         }
-    }
-    if(Robot.e_oi.getXboxButton8())
-    {
+      }
+      if(Robot.e_oi.getXboxButton8())
+      {
         if(time2-time>2500)
         {
             Robot.handOfGod.intakeHOG(false);
@@ -45,8 +47,12 @@ public class HandOfGodCommand extends Command {
         {
             Robot.handOfGod.intakeHOG(true);
         }
+      }
     }
-
+    else {
+      Robot.handOfGod.intakeHOG(false);
+      Robot.handOfGod.resetCounter();
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()

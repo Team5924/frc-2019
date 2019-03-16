@@ -4,6 +4,8 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.team5924.robot.Constants;
+import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.Counter;
 import frc.team5924.robot.commands.HandOfGodCommand;
 import frc.team5924.robot.subsystems.MotorControl;
 
@@ -16,11 +18,17 @@ public class HandOfGod extends Subsystem {
 
   TalonSRX mMaster;
   MotorControl motorControl;
+  DigitalInput hogSwitch;
+  Counter hogCounter;
 
 
   public HandOfGod()
   {
     mMaster = new TalonSRX(Constants.HOGId);
+
+    hogSwitch = new DigitalInput(Constants.HANDOFGOD_SWITCH_CHANNEL);
+    hogCounter = new Counter(hogSwitch);
+    resetCounter();
 
     //Config all talons.
     configTalons(mMaster);
@@ -61,5 +69,13 @@ public class HandOfGod extends Subsystem {
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     setDefaultCommand(new HandOfGodCommand());
+  }
+
+  public void resetCounter() {
+    hogCounter.reset();
+  }
+  public boolean isSwitchSet() {
+    // return true if either top or bottom switches are on
+    return hogCounter.get() > 0;
   }
 }

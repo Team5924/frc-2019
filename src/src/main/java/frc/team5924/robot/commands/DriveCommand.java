@@ -18,10 +18,7 @@ public class DriveCommand extends Command {
   {
     time = System.currentTimeMillis();
     Robot.gyro.reset();
-
     Robot.driveTrain.resetCounter();
-
-
   }
 
   // Called repeatedly when this Command is scheduled to run

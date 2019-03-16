@@ -19,8 +19,8 @@ public class HatchGrabber extends Subsystem {
     DigitalInput hatchSwitch;
     Counter hatchCounter;
 
-    leftSwitch = new DigitalInput(Constants.DRIVETRAIN_LEFT_SWITCH_CHANNEL);
-
+    hatchSwitch = new DigitalInput(Constants.HATCHGRABBER_SWITCH_CHANNEL);
+    hatchCounter = new Counter(hatchSwitch);
     resetCounter();
 
     public HatchGrabber()

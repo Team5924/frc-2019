@@ -50,14 +50,6 @@ public class ElevatorCommand extends Command {
       Robot.elevator.buttonDrive(0);
       Robot.elevator.resetCounter();           
     }
-
-    // move the robot only when switch is off
-    if(!Robot.driveTrain.isSwitchSet()){
-      Robot.driveTrain.driveArcade(Robot.m_oi.getXboxYAxis(),-Robot.m_oi.getXboxZAxis());
-    } else {
-      Robot.driveTrain.driveArcade(0, 0);
-      Robot.driveTrain.resetCounter();      // I don't know if this is required but where else do you reset the counter once it's stop?
-    }
   }
 
   // Make this return true when this Command no longer needs to run execute()

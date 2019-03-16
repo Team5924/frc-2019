@@ -18,10 +18,12 @@ public class Dory extends Subsystem {
   MotorControl motorControl;
 
 
+
+
   public Dory()
   {
     mMaster = new TalonSRX(Constants.HOGId);
-
+ 
     //Config all talons.
     configTalons(mMaster);
 

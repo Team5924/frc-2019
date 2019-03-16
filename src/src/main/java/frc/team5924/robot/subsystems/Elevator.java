@@ -47,11 +47,6 @@ public class Elevator extends Subsystem
 
         motorControl = new MotorControl(mMaster);
 
-        topSwitch = new DigitalInput(Constants.ELEVATOR_TOP_SWITCH_CHANNEL);
-        bottomSwitch = new DigitalInput(Constants.ELEVATOR_BOTTOM_SWITCH_CHANNEL);
-        topCounter = new Counter(topSwitch);
-        bottomCounter = new Counter(bottomSwitch);
-        resetCounter();
     }
     
     public synchronized static Elevator getInstance() {
@@ -75,9 +70,9 @@ public class Elevator extends Subsystem
     public void resetCounter() {
         topCounter.reset();
         bottomCounter.reset();
-      }
+    }
       public boolean isSwitchSet() {
         // return true if either top or bottom switches are on
         return topCounter.get() > 0 || bottomCounter.get() > 0;
-      }
+    }
 }
