@@ -9,7 +9,7 @@ import frc.team5924.robot.subsystems.*;
  * This class allows auto-targeting in teleop mode. So basically the robot can be
  * driven close to the target and then user presses A to make the robot auto-target 
  * the target.
-*/
+*//*
 public class LimeLightTargetCommand extends Command {
 
   public LimeLightTargetCommand() 
@@ -78,4 +78,4 @@ public class LimeLightTargetCommand extends Command {
   {
     end();
   }
-}
+}*/

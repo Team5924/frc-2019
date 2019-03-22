@@ -4,6 +4,7 @@ import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.Compressor;
+import edu.wpi.first.wpilibj.DigitalInput;
 
 /*----------------------------------------------------------------------------*/
 /* Copyright (c) 2017-2018 FIRST. All Rights Reserved.                        */
@@ -13,6 +14,7 @@ import edu.wpi.first.wpilibj.Compressor;
 /*----------------------------------------------------------------------------*/
 
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
@@ -38,12 +40,12 @@ public class Robot extends TimedRobot {
   public static HandOfGod handOfGod;
 
 
-  public static Limelight limeLight;
+  //public static Limelight limeLight;
   public static Climber climber;
 
   public static Gyro gyro;
-  //public static HatchGrabber hatchGrabber;
-  //public static Compressor c;
+  public static HatchGrabber hatchGrabber;
+  public static Compressor c;
 
   public static final double ftpersec = 14.39;
   public static final double ftPerSecWithFriction = 11.66; //actual roughly 8.6ft/sec
@@ -54,6 +56,7 @@ public class Robot extends TimedRobot {
   SendableChooser<Command> m_chooseCommand = new SendableChooser<>();
   public static double startTime;
   public static double endTime;
+  public boolean bool = false;
   /**
    * This function is run when the robot is first started up and should be
    * used for any initialization code.
@@ -67,14 +70,16 @@ public class Robot extends TimedRobot {
     dory = new Dory();
     handOfGod = new HandOfGod();
 
-    limeLight = new Limelight();
+    //limeLight = new Limelight();
 
     gyro = new AnalogGyro(0);
-    UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
-    camera.setResolution(480,360);//240,144 (30 fps)
+    UsbCamera camera = CameraServer.getInstance().startAutomaticCapture(0);
+    UsbCamera camera1 = CameraServer.getInstance().startAutomaticCapture(1);
+    camera.setResolution(360,240);//240,144 (30 fps)
+    camera1.setResolution(360, 240);
     //hatchGrabber = new HatchGrabber();
     //c = new Compressor();
-    //c.setClosedLoopControl(false);
+    //c.setClosedLoopControl(true);
 
     // chooser.addObject("My Auto", new MyAutoCommand());
     // SmartDashboard.putData("Auto mode", m_chooser);
@@ -90,7 +95,7 @@ public class Robot extends TimedRobot {
     m_chooseCommand.addObject("Dory Command", new DoryCommand());
     m_chooseCommand.addObject("Elevator Command", new ElevatorCommand());
     m_chooseCommand.addObject("HandOfGod Command", new HandOfGodCommand());
-    m_chooseCommand.addObject("LimeLightTarget Command", new LimeLightTargetCommand());    
+    //m_chooseCommand.addObject("LimeLightTarget Command", new LimeLightTargetCommand());    
     SmartDashboard.putData("Teleop mode", m_chooseCommand); 
     startTime = System.currentTimeMillis();   
   }
@@ -158,16 +163,16 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousPeriodic() {
-    Scheduler.getInstance().run();
+    //Scheduler.getInstance().run();
     System.out.println("Autonomous");
     if(m_oi.getXboxButton2())
     {
-      
       teleopInit();
-      while(true)
-      {
-        teleopPeriodic();
-      }
+      bool = true;
+    }
+    if(bool)
+    {
+      teleopPeriodic();
     }
   }
 
@@ -196,10 +201,29 @@ public class Robot extends TimedRobot {
     Scheduler.getInstance().run();
   }
 
+  DigitalInput switch1 = new DigitalInput(1);
+  DigitalInput switch2 = new DigitalInput(2);
+  DigitalInput switch3 = new DigitalInput(3);
+  DigitalInput switch4 = new DigitalInput(4);
+  DigitalInput switch5 = new DigitalInput(5);
+  DigitalInput switch0;// = new DigitalInput(0);
+
+  public void testInit() {
+    switch0 = new DigitalInput(0);
+  }
+  
+
   /**
    * This function is called periodically during test mode.
    */
   @Override
   public void testPeriodic() {
+    System.out.println("sw0: " + switch0.get());
+    /*System.out.println("sw0: " + switch0.get() +
+      "    sw1:" + switch1.get() + 
+      "    sw2:" + switch2.get() + 
+      "    sw3:" + switch3.get() + 
+      "    sw4:" + switch4.get() + 
+      "    sw5:" + switch5.get() );*/
   }
 }

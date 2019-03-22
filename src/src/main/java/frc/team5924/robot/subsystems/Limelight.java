@@ -7,9 +7,9 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
-import frc.team5924.robot.commands.LimeLightTargetCommand;
+//import frc.team5924.robot.commands.LimeLightTargetCommand;
 
-
+/*
 public class Limelight extends Subsystem{
 
     // These numbers must be tuned for your Robot!  Be careful!
@@ -37,13 +37,13 @@ public class Limelight extends Subsystem{
     NetworkTable table; 
     double x = 0; 
     double y = 0;
-    double area = 0;
+    double area = 0;*/
 
     /**
      * tx is the horizonta offset from crosshair to target
      * ty is the vertical offset from crosshair to target
      * 
-     */
+     *//*
     NetworkTableEntry ts = table.getEntry("ts"); // angle of skew/rotation
     NetworkTableEntry tx = table.getEntry("tx");
     NetworkTableEntry ty = table.getEntry("ty");
@@ -63,8 +63,8 @@ public class Limelight extends Subsystem{
  
     public double getSteerCommand() {
         return m_LimelightSteerCommand;
-    }  
-
+    }  */
+/*
     public void printToDashboard() {
         //post to smart dashboard periodically
         SmartDashboard.putNumber("LimelightX", x);
@@ -73,25 +73,25 @@ public class Limelight extends Subsystem{
         /**
          * Prints everything to the dashboard
          */
-    }
+    //}
 
-    
+    /*
     public double getAngle() {
         return this.ts.getDouble(0.0);
-    }
+    }*/
 
     /**
      * gets the offset of the crosshair from the x axis
      * of the target
-     */
+     *//*
     public double getXOffset() {
         return Math.abs(this.tx.getDouble(0.0));
-    }
+    }*/
 
     /**
      * goes from the origin to the target value
      * @return
-     */
+     *//*
     public Direction getXOffsetDirection() {
         // right pos, left neg
         if(this.tx.getDouble(0.0) > 0)
@@ -105,13 +105,13 @@ public class Limelight extends Subsystem{
         else {
             return Direction.ON_TARGET;
         }
-    }
+    }*/
 
     /**
      * gets the offset of the crosshair from the y axis
      * of the target
      * @return
-     */
+     *//*
     public double getYOffset() {
         return Math.abs(this.ty.getDouble(0.0));
 
@@ -131,11 +131,12 @@ public class Limelight extends Subsystem{
             return Direction.ON_TARGET;
         }
     }
-
+*/
     /**
      * This function implements a simple method of generating driving and steering commands
      * based on the tracking data from a limelight camera.
      */
+    /*
     public void Update_Limelight_Tracking()
     {
             double tv = table.getEntry("tv").getDouble(0);
@@ -175,4 +176,4 @@ public class Limelight extends Subsystem{
     }
 
 }
-
+*/

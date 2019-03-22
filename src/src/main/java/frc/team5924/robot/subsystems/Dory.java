@@ -1,5 +1,6 @@
 package frc.team5924.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -22,12 +23,13 @@ public class Dory extends Subsystem {
 
   public Dory()
   {
-    mMaster = new TalonSRX(Constants.HOGId);
+    mMaster = new TalonSRX(Constants.w_wristId);
  
     //Config all talons.
     configTalons(mMaster);
 
     motorControl = new MotorControl(mMaster);
+    mMaster.setNeutralMode(NeutralMode.Brake);
   }
 
 

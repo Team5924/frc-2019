@@ -11,7 +11,7 @@ public class AutoTargetCommand extends Command {
   public AutoTargetCommand() 
   {
     // Use requires() here to declare subsystem dependencies
-    requires(Robot.limeLight);
+    //requires(Robot.limeLight);
     requires(Robot.driveTrain);
   }
 
@@ -26,13 +26,13 @@ public class AutoTargetCommand extends Command {
   @Override
   protected void execute() 
   {
-    Robot.limeLight.Update_Limelight_Tracking();
+    //Robot.limeLight.Update_Limelight_Tracking();
 
-    if (Robot.limeLight.hasValidTarget())
+    //if (Robot.limeLight.hasValidTarget())
     {
-        Robot.driveTrain.driveArcade(Robot.limeLight.getDriveCommand(),Robot.limeLight.getSteerCommand());
+        //Robot.driveTrain.driveArcade(Robot.limeLight.getDriveCommand(),Robot.limeLight.getSteerCommand());
     }
-    else
+    //else
     {
         Robot.driveTrain.driveArcade(0.0,0.0);
     }

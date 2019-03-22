@@ -60,7 +60,7 @@ public final class MotorControl
 	{
 		switch(moveValue)
 		{
-			case 0: 
+			//case 0: if(setMotorOutputs(-1, -1));
 			case 1:	
 			case 2: 
 			case 3:	
@@ -96,14 +96,14 @@ public final class MotorControl
 
 	public void turnDegrees(double moveValue)
 	{
-
+		setMotorOutputs(moveValue, moveValue);
 	}
 
 	public void driveTank(double leftMoveValue, double rightMoveValue)
 	{
 		leftMoveValue = limitValue(leftMoveValue);
 		rightMoveValue = limitValue(rightMoveValue);
-		setMotorOutputs(leftMoveValue, rightMoveValue);
+		setMotorOutputs(rightMoveValue, leftMoveValue);
 	}
 	
 	public void driveArcade(double moveValue, double rotateValue)

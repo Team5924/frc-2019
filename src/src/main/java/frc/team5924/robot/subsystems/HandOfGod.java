@@ -1,11 +1,13 @@
 package frc.team5924.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.team5924.robot.Constants;
-import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.Counter;
+//import edu.wpi.first.wpilibj.DigitalInput;
+//import edu.wpi.first.wpilibj.Counter;
 import frc.team5924.robot.commands.HandOfGodCommand;
 import frc.team5924.robot.subsystems.MotorControl;
 
@@ -19,7 +21,7 @@ public class HandOfGod extends Subsystem {
   TalonSRX mMaster;
   MotorControl motorControl;
   DigitalInput hogSwitch;
-  Counter hogCounter;
+  //Counter hogCounter;
 
 
   public HandOfGod()
@@ -27,13 +29,14 @@ public class HandOfGod extends Subsystem {
     mMaster = new TalonSRX(Constants.HOGId);
 
     hogSwitch = new DigitalInput(Constants.HANDOFGOD_SWITCH_CHANNEL);
-    hogCounter = new Counter(hogSwitch);
-    resetCounter();
+    //hogCounter = new Counter(hogSwitch);
+   // resetCounter();
 
     //Config all talons.
     configTalons(mMaster);
 
     motorControl = new MotorControl(mMaster);
+    mMaster.setNeutralMode(NeutralMode.Brake);
   }
 
 
@@ -54,7 +57,10 @@ public class HandOfGod extends Subsystem {
     tSrx.configVoltageCompSaturation(12, 0);
   }
 
-
+  public DigitalInput getHOGSwitch()
+  {
+    return hogSwitch;
+  }
   public void intakeHOG(boolean bool)
   {
     motorControl.intakeHOG(bool);
@@ -65,17 +71,24 @@ public class HandOfGod extends Subsystem {
     motorControl.outtakeHOG(bool);
   }
 
+  public void driveTank(double moveValue, double rotateValue)
+  {
+    motorControl.driveTank(moveValue, moveValue);
+  }
+
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     setDefaultCommand(new HandOfGodCommand());
   }
 
-  public void resetCounter() {
-    hogCounter.reset();
-  }
-  public boolean isSwitchSet() {
+  
+ // public void resetCounter() {
+   // hogCounter.reset();
+  //}
+  //public boolean isSwitchSet() {
     // return true if either top or bottom switches are on
-    return hogCounter.get() > 0;
-  }
+   // return hogCounter.get() > 0;
+  //}
+  
 }

@@ -17,17 +17,19 @@ public class HandOfGodCommand extends Command {
   protected void initialize() 
   {
     time = System.currentTimeMillis();
-    Robot.handOfGod.resetCounter();
+   // Robot.handOfGod.resetCounter();
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() 
   {
+    /*
     double time2 = System.currentTimeMillis();
     if (!Robot.handOfGod.isSwitchSet()) {
       if(Robot.e_oi.getXboxButton7())
       {
+        Robot.handOfGod.outtakeHOG(true);
         if(time2-time>2500)
         {
             Robot.handOfGod.outtakeHOG(false);
@@ -52,9 +54,28 @@ public class HandOfGodCommand extends Command {
     else {
       Robot.handOfGod.intakeHOG(false);
       Robot.handOfGod.resetCounter();
+    }*/
+    if(Robot.e_oi.getXboxButton8())
+    {
+      if(Robot.handOfGod.getHOGSwitch().get())
+      {
+        Robot.handOfGod.driveTank(1,1);
+      }
+      else if(!Robot.handOfGod.getHOGSwitch().get())
+      {
+        Robot.handOfGod.driveTank(0.2, 0.2);
+      }
     }
-  }
-
+    else if(Robot.e_oi.getXboxButton7())
+    {
+      Robot.handOfGod.driveTank(-1,-1);
+    }
+    else
+    {
+      Robot.handOfGod.driveTank(0,0);
+    }
+ }
+    
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() 

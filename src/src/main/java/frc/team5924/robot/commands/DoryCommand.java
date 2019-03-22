@@ -21,7 +21,8 @@ public class DoryCommand extends Command {
   @Override
   protected void execute() 
   {
-    Robot.dory.turnDegrees(Robot.e_oi.getXboxXAxis());
+    Robot.dory.turnDegrees(Robot.e_oi.getXboxZRotate()*0.5);
+    //System.out.println(Robot.e_oi.getXboxZRotate());
   }
 
   // Make this return true when this Command no longer needs to run execute()

@@ -1,4 +1,4 @@
-/*
+
 package frc.team5924.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -7,6 +7,7 @@ import frc.team5924.robot.Robot;
 public class HatchGrabberCommand extends Command {
   
   double time;
+  boolean buttonEnabled = true;
   public HatchGrabberCommand() 
   {
     // Use requires() here to declare subsystem dependencies
@@ -24,23 +25,19 @@ public class HatchGrabberCommand extends Command {
   @Override
   protected void execute() 
   {
-    if (!Robot.hatchGrabber.isSwitchSet()) {
-      if(Robot.e_oi.getXboxButton1())
-      {
-        if(Robot.hatchGrabber.getSolenoid())
-        {
-            Robot.hatchGrabber.pneumaticDrive(false);
+      if(Robot.e_oi.getXboxButton1() && buttonEnabled) {
+        buttonEnabled = false;
+        if(Robot.hatchGrabber.getSolenoid()) {
+          Robot.hatchGrabber.pneumaticDrive(false);
+          System.out.println("hatch grabber false");  
+        } else {
+          Robot.hatchGrabber.pneumaticDrive(true);
+          System.out.println("hatch grabber true");
         }
-        else
-        {
-            Robot.hatchGrabber.pneumaticDrive(true);
-        }
-      }
-    }
-    else {
-      Robot.hatchGrabber.pneumaticDrive(false);
-      Robot.hatchGrabber.resetCounter();
-    }  
+      } else if(!Robot.e_oi.getXboxButton1() && !buttonEnabled) {
+        buttonEnabled = true;
+      } 
+      
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -64,4 +61,4 @@ public class HatchGrabberCommand extends Command {
   {
     end();
   }
-}*/
+}
