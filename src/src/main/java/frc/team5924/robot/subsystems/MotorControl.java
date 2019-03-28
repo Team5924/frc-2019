@@ -2,7 +2,7 @@ package frc.team5924.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-
+import frc.team5924.robot.Robot;
 
 public final class MotorControl
 {
@@ -60,12 +60,14 @@ public final class MotorControl
 	{
 		switch(moveValue)
 		{
-			//case 0: if(setMotorOutputs(-1, -1));
+			case 0: if(Robot.elevator.getBottomSwitch())
+				setMotorOutputs(-1, -1); break;
 			case 1:	
 			case 2: 
 			case 3:	
 			case 4: 
-			case 5: 
+			case 5: if(Robot.elevator.getTopSwitch())
+				setMotorOutputs(1,1); break;
 		}
 	}
 

@@ -2,6 +2,7 @@ package frc.team5924.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.team5924.robot.Constants;
@@ -15,17 +16,19 @@ public class Climber extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
-  DoubleSolenoid leftClimberSolenoid;
-  DoubleSolenoid rightClimberSolenoid;
+  DoubleSolenoid backClimberSolenoid;
+  DoubleSolenoid frontClimberSolenoid;
 
   public Climber()
   {
-    //leftClimberSolenoid = new DoubleSolenoid(forwardChannel, reverseChannel);
-    //rightClimberSolenoid = new DoubleSolenoid(forwardChannel, reverseChannel);
+    backClimberSolenoid = new DoubleSolenoid(0, 1);
+    frontClimberSolenoid = new DoubleSolenoid(2, 3);
   }
 
   public void execute()
   {
+    frontClimberSolenoid.set(Value.kForward);
+    backClimberSolenoid.set(Value.kForward);
   }
 
   @Override

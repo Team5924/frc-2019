@@ -21,11 +21,16 @@ public class Elevator extends Subsystem
     MotorControl motorControl;
     DigitalInput topSwitch, bottomSwitch;
     //Counter topCounter, bottomCounter;
+    int ticksPerRev = 4096;
+    double distancePerRevolution;
+    int pulseWidthPos;
 
     public Elevator()
     {
         mMaster = new TalonSRX(Constants.kElevatorMasterId);
         mLeftSlave = new TalonSRX(Constants.kElevatorLeftSlaveId);
+        distancePerRevolution = Math.PI;
+        pulseWidthPos = mMaster.getSensorCollection().getPulseWidthPosition();
 
         // switches to stop the elevator
         //topSwitch = new DigitalInput(Constants.ELEVATOR_TOP_SWITCH_CHANNEL);
@@ -58,6 +63,20 @@ public class Elevator extends Subsystem
         return mInstance;
     }
     
+    public void driveDistance(double inches)
+    {
+        double currentDistance = pulseWidthPos/ticksPerRev*distancePerRevolution;
+        if(currentDistance<inches)
+        {
+            driveTank(1,1);
+        }
+        else if(currentDistance>inches)
+        {
+            driveTank(-1,-1);
+        }
+        driveTank(0,0);
+    }
+
     public void buttonDrive(int moveValue)
     {
         motorControl.buttonDrive(moveValue);
@@ -67,6 +86,17 @@ public class Elevator extends Subsystem
     {
         motorControl.driveTank(moveValue, moveValue);
     }
+
+    public boolean getBottomSwitch()
+    {
+        return bottomSwitch.get();
+    }
+
+    public boolean getTopSwitch()
+    {
+        return topSwitch.get();
+    }
+
     @Override
     public void initDefaultCommand() {
       // Set the default command for a subsystem here.

@@ -42,7 +42,7 @@ public class HatchGrabber extends Subsystem {
 
     public boolean getSolenoid() 
     {
-        return grabberSolenoid.get() == Value.kForward;
+      return grabberSolenoid.get() == Value.kForward;
     }
   @Override
   public void initDefaultCommand() {
